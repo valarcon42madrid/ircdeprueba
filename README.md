@@ -177,8 +177,8 @@ POR ULTIMO CABE DESTACAR:
 
 -> EL COMANDO MODE, EMPLEADO PARA FIJAR O ELIMINAR OPCIONES DE UN OBJETIVO (canal o usuario). Son “i”, “o” para usuarios y “b”, “k”, “m”, “o”, “p”, “s”, “t”, “v” para canales.
 
-MODE <nickname> <flags> (user)
-MODE <channel> <flags> [<args>]
+MODE nickname flags (user)
+MODE channel flags args
 
 -> PART
 
