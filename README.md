@@ -52,7 +52,7 @@ static inline void log(const std::string& message)
 
     strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", timeinfo);
     std::string str(buffer);
-
+    
     (void)message;
     std::cout << "\033[0;34m[" << str << "]\033[0m ";
     std::cout << message << std::endl;
@@ -91,49 +91,57 @@ Trás hacer make ejecute en terminal:
 
 Desde otra terminal y sin finalizar la ejecución anterior podremos unirnos e identificarnos mediante los comandos:
 
-NC
+·  NC
 
 netcat permite leer y escribir datos entre dos redes.
 
 nc -c 127.0.0.1 6667
 
-NICK
+
+·  NICK
 
 para definir tu nick o apodo:
 
 Nick v
 
-PASS
+
+·  PASS
 
 para unirse/logearse
 
 PASS 127.0.0.1
 
-USER
+
+·  USER
 
 define las características del usuario
 
 USER valarcon 6667 127.0.0.1 victor
 
-JOIN
+
+· JOIN
 
 para unirse al canal
 
 Join 6667
 
+
 FINALMENTE PODREMOS EMPLEAR COMANDOS PARA COMUNICARNOS COMO:
 
-PING
+· PING
 
 Prueba simple que solo tiene función fática (o de medida del tiempo que tardan en viajar los paquetes de datos).
 
-PRIVMSG
+
+· PRIVMSG
 
 Mensaje privado a un usuario
 
-NOTICE
+
+· NOTICE
 
 Mensaje a un objetivo (canal o usuario)
+
 _______________________________________________
 POR ULTIMO CABE DESTACAR:
 
