@@ -57,20 +57,19 @@ static inline void log(const std::string& message)
     std::cout << "\033[0;34m[" << str << "]\033[0m ";
     std::cout << message << std::endl;
 }
-
-#endif
 ---------------------------------------------------------
 En CLIENT
 
- EL CLIENTE TIENE 4 ESTADOS POSIBLES
+ EL CLIENTE TIENE 4 ESTADOS POSIBLES:
 
-enum ClientState
+ enum ClientState
 {
     HANDSHAKE,
     LOGIN,
     REGISTERED,
     DISCONNECTED
 };
+
 ------------------------------------------------
 En SERVER 
 
