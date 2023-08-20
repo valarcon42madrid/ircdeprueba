@@ -1,6 +1,7 @@
 ANTES DE PROFUNDIZAR EN EL CÓDIGO ES CONVENIENTE ACLARAR ALGUNOS PARÁMETROS Y CONCEPTOS SENCILLOS:
 
 En RESPONSE
+
 AQUI TENEMOS LOS ERRORES Y RESPUESTAS QUE EMPLEA EL PROGRAMA.
 
 #define ERR_NOTREGISTERED(source)                       "451 " + source + " :You have not registered"
@@ -60,6 +61,7 @@ static inline void log(const std::string& message)
 #endif
 ---------------------------------------------------------
 En CLIENT
+
  EL CLIENTE TIENE 4 ESTADOS POSIBLES
 
 enum ClientState
@@ -71,6 +73,7 @@ enum ClientState
 };
 ------------------------------------------------
 En SERVER 
+
 POR AHORA TENEMOS 999 COMO MÁXIMO DE CONEXIONES
 
 #define MAX_CONNECTIONS 999
