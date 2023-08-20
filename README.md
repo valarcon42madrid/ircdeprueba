@@ -39,7 +39,7 @@ AQUI TENEMOS LOS ERRORES Y RESPUESTAS QUE EMPLEA EL PROGRAMA.
 #define RPL_KICK(source, channel, target, reason)       ":" + source + " KICK " + channel + " " + target + " :" + reason
 #define RPL_MODE(source, channel, modes, args)          ":" + source + " MODE " + channel + " " + modes + " " + args
 
-A CONTINUACION SE OBSERVA UN STATIC (no accesible por otras funciones) INLINE (unida por definición a otra funciòn; ergo sin una dirrección de memoria propia). ESTA SE EMPLEARÁ EN CUALQUIER ERR_ y RPL_ DEL GRUPO DEFINIDO ANTERIORMENTE.
+A CONTINUACION SE OBSERVA UN STATIC (no accesible por otras funciones) INLINE (unida por definición a otra funciòn; ergo sin una dirección de memoria propia). ESTA SE EMPLEARÁ EN CUALQUIER ERR_ y RPL_ DEL GRUPO DEFINIDO ANTERIORMENTE.
 
 static inline void log(const std::string& message) 
 {
