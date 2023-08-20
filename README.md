@@ -184,14 +184,14 @@ MODE <channel> <flags> [<args>]
 
 Abandona el/los canales especificados
 
-syntax: PART <channels> [<message>]
+syntax: PART channels message
 
 
 -> KICK
 
 echar a alguien
 
-syntax: KICK <channel> <client> :[<message>]
+syntax: KICK channel client :message
 
 -> QUIT
 
