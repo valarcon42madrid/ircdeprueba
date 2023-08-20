@@ -91,34 +91,39 @@ Trás hacer make ejecute en terminal:
 
 Desde otra terminal y sin finalizar la ejecución anterior podremos unirnos e identificarnos mediante los comandos:
 
+.
 ·  NC
 
 netcat permite leer y escribir datos entre dos redes.
 
 nc -c 127.0.0.1 6667
 
-
+.
+.
 ·  NICK
 
 para definir tu nick o apodo:
 
 Nick v
 
-
+.
+.
 ·  PASS
 
 para unirse/logearse
 
 PASS 127.0.0.1
 
-
+.
+.
 ·  USER
 
 define las características del usuario
 
 USER valarcon 6667 127.0.0.1 victor
 
-
+.
+.
 · JOIN
 
 para unirse al canal
