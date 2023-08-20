@@ -57,7 +57,9 @@ static inline void log(const std::string& message)
     std::cout << "\033[0;34m[" << str << "]\033[0m ";
     std::cout << message << std::endl;
 }
+
 ---------------------------------------------------------
+
 En CLIENT
 
  EL CLIENTE TIENE 4 ESTADOS POSIBLES:
