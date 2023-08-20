@@ -85,32 +85,38 @@ _______________________________________________________________
 Trás hacer make ejecute en terminal:
 
 ./ft_irc 6667 127.0.0.1
+
 Ésto iniciará el servidor y permitirá a los usuarios unirse.
 
 
 Desde otra terminal y sin finalizar la ejecución anterior podremos unirnos e identificarnos mediante los comandos:
 
 NC
+
 netcat permite leer y escribir datos entre dos redes.
 
 nc -c 127.0.0.1 6667
 
 NICK
+
 para definir tu nick o apodo:
 
 Nick v
 
 PASS
+
 para unirse/logearse
 
 PASS 127.0.0.1
 
 USER
+
 define las características del usuario
 
 USER valarcon 6667 127.0.0.1 victor
 
 JOIN
+
 para unirse al canal
 
 Join 6667
@@ -118,30 +124,37 @@ Join 6667
 FINALMENTE PODREMOS EMPLEAR COMANDOS PARA COMUNICARNOS COMO:
 
 PING
+
 Prueba simple que solo tiene función fática (o de medida del tiempo que tardan en viajar los paquetes de datos).
 
 PRIVMSG
+
 Mensaje privado a un usuario
 
 NOTICE
+
 Mensaje a un objetivo (canal o usuario)
+_______________________________________________
 POR ULTIMO CABE DESTACAR:
 
- EL COMANDO MODE, EMPLEADO PARA FIJAR O ELIMINAR OPCIONES DE UN OBJETIVO (canal o usuario). Son “i”, “o” para usuarios y “b”, “k”, “m”, “o”, “p”, “s”, “t”, “v” para canales.
+-> EL COMANDO MODE, EMPLEADO PARA FIJAR O ELIMINAR OPCIONES DE UN OBJETIVO (canal o usuario). Son “i”, “o” para usuarios y “b”, “k”, “m”, “o”, “p”, “s”, “t”, “v” para canales.
 
 MODE <nickname> <flags> (user)
 MODE <channel> <flags> [<args>]
 
-PART
+-> PART
+
 Abandona el/los canales especificados
 
 syntax: PART <channels> [<message>]
 
 
-KICK
+-> KICK
+
 echar a alguien
 
 syntax: KICK <channel> <client> :[<message>]
 
-QUIT
+-> QUIT
+
  (...)
