@@ -131,7 +131,7 @@ nc -c 127.0.0.1 6667
 
 para definir tu nick o apodo:
 
-Nick v
+NICK v
 
 
 
@@ -175,11 +175,10 @@ Mensaje a un objetivo (canal o usuario)
 _______________________________________________
 POR ULTIMO CABE DESTACAR:
 
--> EL COMANDO MODE, EMPLEADO PARA FIJAR O ELIMINAR OPCIONES DE UN OBJETIVO (canal o usuario). Son “i”, “o” para usuarios y “b”, “k”, “m”, “o”, “p”, “s”, “t”, “v” para canales.
+-> EL COMANDO MODE, EMPLEADO PARA FIJAR O ELIMINAR OPCIONES DE UN OBJETIVO (canal o usuario). Son “i”, “o”(capaz de kickear/admin) para usuarios y “b”, “k”, “m”, “o”, “p”, “s”, “t”, “v” para canales.
 
-MODE nickname flags (user)
+MODE channel/nickname flags (user/args)
 
-MODE channel flags args
 
 -> PART
 
