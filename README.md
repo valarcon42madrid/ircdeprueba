@@ -111,7 +111,7 @@ _______________________________________________________________
 
 Trás hacer make ejecute en terminal:
 
-./ft_irc 6667 127.0.0.1
+./ircserv 6667 127.0.0.1
 
 Ésto iniciará el servidor y permitirá a los usuarios unirse.
 
