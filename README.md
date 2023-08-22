@@ -198,6 +198,8 @@ echar a alguien
 
 syntax: KICK channel client :message
 
+KICK 6667 v : expulsado
+
 -> QUIT
 
  (...)
