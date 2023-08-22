@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:42:20 by valarcon          #+#    #+#             */
-/*   Updated: 2023/07/27 10:42:23 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:25:46 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,18 +95,11 @@ Client*         Server::get_client(const std::string& nickname)
 
 Channel*        Server::get_channel(const std::string& name)
 {
-    channel_iterator it_b = _channels.begin();
-    channel_iterator it_e = _channels.begin();
+	for (channel_iterator it = _channels.begin(); it != _channels.end(); it++)
+		if (it.operator*()->get_name() == name)
+			return it.operator*();
 
-    while (it_b != it_e)
-    {
-        if (!name.compare((*it_b)->get_name()))
-            return (*it_b);
-
-        it_b++;
-    }
-
-    return NULL;
+	return nullptr;
 }
 
 

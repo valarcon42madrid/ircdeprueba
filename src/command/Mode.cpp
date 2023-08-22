@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:36:41 by valarcon          #+#    #+#             */
-/*   Updated: 2023/07/27 10:36:43 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:25:30 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ Mode::Mode(Server* srv) : Command(srv) {}
 
 Mode::~Mode() {}
 
-// syntax:  MODE <nickname> <flags> (user)
-//          MODE <channel> <flags> [<args>]
 
 void    Mode::execute(Client* client, std::vector<std::string> args)
 {
@@ -31,8 +29,15 @@ void    Mode::execute(Client* client, std::vector<std::string> args)
     std::string target = args.at(0);
     
     Channel *channel = _srv->get_channel(target);
+
     if (!channel)
     {
+		/*if (target.size())
+		{
+					std::cout << "mode changed for " << target << std::endl;
+					return ;
+	
+		}*/
         client->reply(ERR_NOSUCHCHANNEL(client->get_nickname(), target));
         return;
     }
