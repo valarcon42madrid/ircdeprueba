@@ -177,8 +177,8 @@ POR ULTIMO CABE DESTACAR:
 
 -> EL COMANDO MODE, EMPLEADO PARA FIJAR O ELIMINAR OPCIONES DE UN OBJETIVO (canal o usuario). Son +/- “k”, “l”, “n” para canales.
 
-(((  K -> std::string    get_key() 
-     L  -> size_t   get_limit() const
+(((  K -> std::string    get_key()      //////
+     L  -> size_t   get_limit() const   /////
     N  ->  bool    ext_msg() const                 )))
 
 MODE channel(/nickname aun no implementado) flags (user/args)
