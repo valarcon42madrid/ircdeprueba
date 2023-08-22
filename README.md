@@ -175,7 +175,7 @@ Mensaje a un objetivo (canal o usuario)
 _______________________________________________
 POR ULTIMO CABE DESTACAR:
 
--> EL COMANDO MODE, EMPLEADO PARA FIJAR O ELIMINAR OPCIONES DE UN OBJETIVO (canal o usuario). Son “i”, “o”(capaz de kickear/admin) para usuarios y “b”, “k”, “m”, “o”, “p”, “s”, “t”, “v” para canales.
+-> EL COMANDO MODE, EMPLEADO PARA FIJAR O ELIMINAR OPCIONES DE UN OBJETIVO (canal o usuario). Son +/- “k”, “l”, “n” para canales.
 
 MODE channel(/nickname aun no implementado) flags (user/args)
 
