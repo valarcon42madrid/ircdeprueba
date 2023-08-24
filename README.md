@@ -1,8 +1,10 @@
 WEECHAT:
  docker run -ti weechat/weechat
  
-/server add flamboyant_mccarthy irc.flamboyant_mccarthy.chat/6667 -tls
+/server add flamboyant_mccarthy 127.0.0.1/6667 -tls
+
 /set irc.server.libera.username "My user name"
+
 /set irc.server.libera.realname "My real name"
 
 
