@@ -1,3 +1,9 @@
+WEECHAT:
+ docker run -ti weechat/weechat
+ 
+/server add flamboyant_mccarthy irc.flamboyant_mccarthy.chat/6667 -tls
+
+
 ANTES DE PROFUNDIZAR EN EL CÓDIGO ES CONVENIENTE ACLARAR ALGUNOS PARÁMETROS Y CONCEPTOS SENCILLOS:
 
 En RESPONSE
