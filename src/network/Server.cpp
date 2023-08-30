@@ -99,7 +99,7 @@ Channel*        Server::get_channel(const std::string& name)
 		if (it.operator*()->get_name() == name)
 			return it.operator*();
 
-	return nullptr;
+	return NULL;
 }
 
 
