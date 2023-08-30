@@ -1,18 +1,25 @@
 PRUEBA DE OTRO CLIENTE IRC (WEECHAT):
 
  ABRIR WEECHAT CON DOCKER
+ 
  docker run -ti weechat/weechat
 
  EN TERMINAL CONSULTAR LA IP QUE EMPLEA DOCKER:
  
  ifconfig | grep inet
+ 
  (*y copiamos 1º inet despues de las inet6, una con netmask y brodcast a continuación)
  
  EN WEECHAT: 
+ 
  AÑADIR SERVIDOR:
+ 
 /server add CUALQUIERNOMBRE (I.P.consultada)/6667 -tls
+
 CONFIGURAR AL GUSTO:
+
 /set irc.server.libera.username "My user name"
+
 /set irc.server.libera.realname "My real name"
 ...
 
