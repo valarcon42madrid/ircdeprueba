@@ -37,6 +37,9 @@ CONECTARSE:
 
 /join "GRUPO"
 
+PARA HABLAR A ALGUIEN/ALGO:
+/query TARGET mensaje
+
 
 -----------------------------------------------
 
