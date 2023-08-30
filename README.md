@@ -17,6 +17,14 @@ PRUEBA DE OTRO CLIENTE IRC (WEECHAT):
  
 /server add CUALQUIERNOMBRE (I.P.consultada)/6667 -tls
 
+IMPORTANTE:
+
+se desactiva el tls:
+/set irc.server_default.tls off
+
+Se introduce el password:
+/set irc.server.CUALQUIERNOMBRE.password (PASSWORDPUESTAEN./IRCSERV_6667_AQUI)
+
 CONFIGURAR AL GUSTO:
 
 /set irc.server.libera.username "My user name"
@@ -26,6 +34,8 @@ CONFIGURAR AL GUSTO:
 
 CONECTARSE: 
 /connect CUALQUIERNOMBRE
+
+/join "GRUPO"
 
 
 -----------------------------------------------
