@@ -9,6 +9,7 @@ PRUEBA DE OTRO CLIENTE IRC (WEECHAT):
  ifconfig | grep inet
  
  (*y copiamos 1º inet despues de las inet6, una con netmask y brodcast a continuación)
+ (TAMBIEN SE PUEDE EMPLEAR host.docker.internal)
  
  EN WEECHAT: 
  
