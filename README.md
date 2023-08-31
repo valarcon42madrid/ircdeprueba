@@ -179,6 +179,12 @@ para definir tu nick o apodo:
 NICK v
 
 
+·  USER
+
+define las características del usuario
+
+USER valarcon 6667 127.0.0.1 victor
+
 
 ·  PASS
 
@@ -186,12 +192,6 @@ para unirse/logearse
 
 PASS 127.0.0.1
 
-
-·  USER
-
-define las características del usuario
-
-USER valarcon 6667 127.0.0.1 victor
 
 
 · JOIN
