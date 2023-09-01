@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:34:04 by valarcon          #+#    #+#             */
-/*   Updated: 2023/07/27 10:34:23 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/08/31 14:20:30 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 #define ERR_NOSUCHNICK(source, nickname)                "401 " + source + " " + nickname + " :No such nick/channel"
 #define ERR_USERNOTINCHANNEL(source, nickname, channel) "441 " + source + " " + nickname + " " + channel + " :They aren't on that channel"
 
-
+#define RPL_LIST(source, channel)						"319 " + source + " : " +  channel
 #define RPL_WELCOME(source)                             "001 " + source + " :Welcome " + source + " to the ft_irc network"
 #define RPL_NAMREPLY(source, channel, users)            "353 " + source + " = " + channel + " :" + users
 #define RPL_ENDOFNAMES(source, channel)                 "366 " + source + " " + channel + " :End of /NAMES list."

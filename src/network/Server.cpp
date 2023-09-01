@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:42:20 by valarcon          #+#    #+#             */
-/*   Updated: 2023/08/22 16:25:46 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/01 15:43:12 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,17 @@ Channel*        Server::get_channel(const std::string& name)
 	return NULL;
 }
 
+Channel*        Server::get_channels(int i)
+{
+	int x = 0;
+	for (channel_iterator it = _channels.begin(); it != _channels.end(); it++)
+	{
+		if (x == i)
+			return it.operator*();
+		x++;
+	}
+	return NULL;
+}
 
 void            Server::on_client_connect()
 {

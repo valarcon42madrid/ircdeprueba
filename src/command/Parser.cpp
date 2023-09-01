@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:37:26 by valarcon          #+#    #+#             */
-/*   Updated: 2023/07/27 10:37:29 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:13:13 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ Parser::Parser(Server* srv) : _srv(srv)
     _commands["QUIT"] = new Quit(_srv, false);
 
     _commands["PING"] = new Ping(_srv);
+	_commands["LIST"] = new List(_srv);
     _commands["PONG"] = new Pong(_srv);
     _commands["JOIN"] = new Join(_srv);
     _commands["PART"] = new Part(_srv);

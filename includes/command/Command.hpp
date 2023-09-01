@@ -3,6 +3,13 @@
 
 #include <numeric>
 #include <string>
+#include <stdexcept>
+#include <cerrno>
+#include <string>
+
+#include <algorithm>
+#include <vector>
+#include <map>
 
 class Command;
 
@@ -144,6 +151,16 @@ class Mode : public Command
 
         Mode(Server* srv);
         ~Mode();
+
+        void    execute(Client* client, std::vector<std::string> args);
+};
+
+class List : public Command
+{
+    public:
+
+        List(Server* srv);
+        ~List();
 
         void    execute(Client* client, std::vector<std::string> args);
 };
