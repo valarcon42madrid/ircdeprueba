@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:35:41 by valarcon          #+#    #+#             */
-/*   Updated: 2023/07/27 10:35:45 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:46:19 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void    Join::execute(Client* client, std::vector<std::string> args)
 
     std::string name = args[0];
     std::string pass = args.size() > 1 ? args[1] : "";
+	std::string topic = "";
 
     Channel *channel = client->get_channel();
 	if (channel) 
@@ -38,7 +39,7 @@ void    Join::execute(Client* client, std::vector<std::string> args)
 
     channel = _srv->get_channel(name);
 	if (!channel)
-		channel = _srv->create_channel(name, pass, client);
+		channel = _srv->create_channel(name, pass, topic, client);
 
     if (channel->get_limit() > 0 && channel->get_size() >= channel->get_limit())
     {

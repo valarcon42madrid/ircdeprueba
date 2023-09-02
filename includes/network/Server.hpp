@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:33:29 by valarcon          #+#    #+#             */
-/*   Updated: 2023/08/31 14:05:01 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:17:50 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ class Server
 
         std::string     read_message(int fd);
 
-        Channel*        create_channel(const std::string &name, const std::string &key, Client *client);
+        Channel*        create_channel(const std::string &name, const std::string &key, const std::string &topic, Client *client);
 
         int             create_socket();
 		Channel*        get_channels(int i);

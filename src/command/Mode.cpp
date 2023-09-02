@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:36:41 by valarcon          #+#    #+#             */
-/*   Updated: 2023/08/22 16:25:30 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/02 11:15:09 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,13 @@ void    Mode::execute(Client* client, std::vector<std::string> args)
             {
                 channel->set_key(active ? args[p] : "");
                 channel->broadcast(RPL_MODE(client->get_prefix(), channel->get_name(), (active ? "+k" : "-k"), (active ? args[p] : "")));
+                p += active ? 1 : 0;
+                break;
+            }
+			 case 't':
+            {
+                channel->set_topic(active ? args[p] : "");
+                channel->broadcast(RPL_MODE(client->get_prefix(), channel->get_name(), (active ? "+t" : "-t"), (active ? args[p] : "")));
                 p += active ? 1 : 0;
                 break;
             }

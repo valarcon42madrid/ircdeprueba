@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:42:20 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/01 15:43:12 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:19:31 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,9 +214,9 @@ std::string     Server::read_message(int fd)
 }
 
 
-Channel*        Server::create_channel(const std::string& name, const std::string& key, Client* client)
+Channel*        Server::create_channel(const std::string& name, const std::string& key, const std::string& topic, Client* client)
 {
-    Channel *channel = new Channel(name, key, client);
+    Channel *channel = new Channel(name, key, topic, client);
     _channels.push_back(channel);
 
     return channel;

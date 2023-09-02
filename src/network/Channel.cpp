@@ -6,15 +6,15 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:40:23 by valarcon          #+#    #+#             */
-/*   Updated: 2023/07/27 10:40:39 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/02 11:32:26 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "network/Channel.hpp"
 
 
-Channel::Channel(const std::string& name, const std::string& key, Client* admin)
-    : _name(name), _admin(admin), _k(key), _l(0), _n(false)
+Channel::Channel(const std::string& name, const std::string& key, const std::string& topic, Client* admin)
+    : _name(name), _admin(admin), _k(key), _t(topic), _l(0), _n(false)
 {
 
 }
@@ -26,6 +26,7 @@ std::string                 Channel::get_name() const { return _name; }
 Client*                     Channel::get_admin() const { return _admin; }
 
 std::string                 Channel::get_key() const { return _k; }
+std::string                 Channel::get_topic() const { return _t; }
 size_t                      Channel::get_limit() const { return _l; }
 bool                        Channel::ext_msg() const { return _n; }
 
@@ -53,6 +54,7 @@ std::vector<std::string>    Channel::get_nicknames()
 
 
 void                        Channel::set_key(std::string key) { _k = key; }
+void                        Channel::set_topic(std::string topic) { _t = topic; }
 void                        Channel::set_limit(size_t limit) { _l = limit; }
 void                        Channel::set_ext_msg(bool flag) { _n = flag; }
 

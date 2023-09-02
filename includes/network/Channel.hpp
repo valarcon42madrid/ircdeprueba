@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:31:44 by valarcon          #+#    #+#             */
-/*   Updated: 2023/07/27 10:32:49 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/02 11:32:28 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ class Channel
         Client*                 _admin;
         std::vector<Client *>   _clients;
 
-        std::string             _k; 
+		std::string             _k;
+        std::string             _t; 
         size_t                  _l;
         bool                    _n;
 
@@ -39,13 +40,14 @@ class Channel
     
     public:
 
-        Channel(const std::string &name, const std::string &key, Client* admin);
+        Channel(const std::string &name, const std::string &key, const std::string &topic, Client* admin);
         ~Channel();
 
         std::string                 get_name() const;
         Client*                     get_admin() const;
         
         std::string                 get_key() const;
+		std::string                 get_topic() const;
         size_t                      get_limit() const;
         bool                        ext_msg() const;
 
@@ -53,6 +55,7 @@ class Channel
         std::vector<std::string>    get_nicknames();
 
         void                        set_key(std::string key);
+		void                        set_topic(std::string topic);
         void                        set_limit(size_t limit);
         void                        set_ext_msg(bool flag);
 

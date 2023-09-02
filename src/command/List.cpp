@@ -4,7 +4,7 @@ List::List(Server* srv) : Command(srv) {}
 
 List::~List() {}
 
-///iincluir SINTAX
+///SINTAX: LIST [optional specific channel (or channels with spaces between)] 
 
 void    List::execute(Client* client, std::vector<std::string> args)
 {
@@ -16,7 +16,7 @@ void    List::execute(Client* client, std::vector<std::string> args)
 			return;
 		while (ch)
 		{
-			client->reply(RPL_LIST(client->get_nickname(), _srv->get_channels(i)->get_name()));
+			client->reply(RPL_LIST(_srv->get_channels(i)->get_topic(), _srv->get_channels(i)->get_name()));
 			i++;
 			Channel* ch = _srv->get_channels(i);
 			if (!ch)
@@ -27,9 +27,8 @@ void    List::execute(Client* client, std::vector<std::string> args)
 	{
 		while (_srv->get_channel(args[i]))
 		{
-			client->reply(RPL_LIST(client->get_nickname(), _srv->get_channel(args[i])->get_name()));
-					i++;
-			///FALTA IMPLEMENTAR TOPIC Y CAMBIAR EN RPL_REPLY EL clientnickname POR _srv->get_channel(args[0])->get_topic()
+			client->reply(RPL_LIST(_srv->get_channels(i)->get_topic(), _srv->get_channels(i)->get_name()));
+			i++;
 		}
 		if (i == 0)
 			client->reply(ERR_NOSUCHCHANNEL(client->get_nickname(), args[i]));
