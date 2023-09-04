@@ -87,7 +87,6 @@ void    Mode::execute(Client* client, std::vector<std::string> args)
             }
 			case 'b':
             {
-				std::cout << channel->get_admin() << std::endl;
 				if (channel->get_admin() != _srv->get_client(args[p]) || active == 0)
 				{
                 	channel->ban_client(active ? _srv->get_client(args[p]) : NULL);
