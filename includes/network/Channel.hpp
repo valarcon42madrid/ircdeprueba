@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:31:44 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/02 11:32:28 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:04:06 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ class Channel
         std::string             _name;
         Client*                 _admin;
         std::vector<Client *>   _clients;
+		std::vector<Client *>   _banned;
+
 
 		std::string             _k;
         std::string             _t; 
@@ -50,6 +52,7 @@ class Channel
 		std::string                 get_topic() const;
         size_t                      get_limit() const;
         bool                        ext_msg() const;
+		bool						is_ban_client(Client* client);
 
         size_t                      get_size() const;
         std::vector<std::string>    get_nicknames();
@@ -64,6 +67,11 @@ class Channel
 
         void                        add_client(Client* client);
         void                        remove_client(Client* client);
+
+		//
+		void                        ban_client(Client* client);
+        //void                        remove_banned(Client* client);
+        void                        remove_bans(Client* client);
 
         void                        kick(Client* client, Client* target, const std::string& reason);
 };

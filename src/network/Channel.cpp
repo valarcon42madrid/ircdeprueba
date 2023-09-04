@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:40:23 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/02 11:32:26 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:51:52 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,55 @@ void                        Channel::remove_client(Client* client)
         std::string message = client->get_nickname() + " is now the admin of the channel " + _name;
         log(message);
     }
+}
+
+bool                        Channel::is_ban_client(Client* client)
+{
+    client_iterator it_b = _banned.begin();
+    client_iterator it_e = _banned.end();
+
+    while (it_b != it_e)
+    {
+        if (*it_b == client)
+			return 1;
+
+        it_b++;
+    }
+	return 0;
+}
+
+void                        Channel::ban_client(Client* client)
+{
+	if (client != NULL)
+	    _banned.push_back(client);
+}
+
+void                        Channel::remove_bans(Client* client)
+{
+	Client *cl = client;
+	if (cl != NULL)
+	{
+		client_iterator it_b = _banned.begin();
+		client_iterator it_e = _banned.end();
+   		 while (it_b != it_e)
+   		 {
+			  if (*it_b == client)
+            	 _banned.erase(it_b);
+        	it_b++;
+   		 }
+	}
+	else
+	{
+		client_iterator it_b = _banned.begin();
+    	client_iterator it_e = _banned.end();
+
+    	while (it_b != it_e)
+   		 {
+        	_banned.erase(it_b);
+       		 it_b++;
+   		 }
+	}
+
 }
 
 void                        Channel::kick(Client* client, Client* target, const std::string& reason)

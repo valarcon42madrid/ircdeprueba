@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:35:41 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/01 17:46:19 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:08:58 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ void    Join::execute(Client* client, std::vector<std::string> args)
 		client->reply(ERR_BADCHANNELKEY(client->get_nickname(), name));
 		return;
 	}
-
+	if (channel->is_ban_client(client))
+	{
+		client->reply(ERR_BANNEDFROMCHAN(client->get_nickname(), channel->get_name()));
+		return ;
+	}
 	client->join(channel);
 }
