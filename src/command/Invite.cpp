@@ -50,6 +50,12 @@ void    Invite::execute(Client* client, std::vector<std::string> args)
         client->reply(ERR_NOSUCHNICK(client->get_nickname(), target));
         return;
     }
+	if (channel->is_ban_client(clientinvited))
+	{
+		client->reply(ERR_NOSUCHNICK(target, name));
+
+		return ;
+	}
 	if (channel->is_invited(clientinvited))
 	{
 		client->reply(ERR_ALREADYINVITED(client->get_nickname(), target, name));
