@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:40:23 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/04 16:51:52 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:09:21 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 Channel::Channel(const std::string& name, const std::string& key, const std::string& topic, Client* admin)
-    : _name(name), _admin(admin), _k(key), _t(topic), _l(0), _n(false)
+    : _name(name), _admin(admin), _k(key), _t(topic), _l(0), _n(false), _i(false)
 {
 
 }
@@ -57,7 +57,8 @@ void                        Channel::set_key(std::string key) { _k = key; }
 void                        Channel::set_topic(std::string topic) { _t = topic; }
 void                        Channel::set_limit(size_t limit) { _l = limit; }
 void                        Channel::set_ext_msg(bool flag) { _n = flag; }
-
+void                        Channel::set_invite(bool flag) { _i = flag; }
+bool						Channel::get_invite() const { return _i; }
 
 void                        Channel::broadcast(const std::string& message)
 {
@@ -133,6 +134,39 @@ bool                        Channel::is_ban_client(Client* client)
 	return 0;
 }
 
+void						Channel::client_to_waitlist(Client* client)
+{
+	_waitlist.push_back(client);
+}
+
+bool						Channel::client_at_waitlist(Client* client)
+{
+	client_iterator it_b = _waitlist.begin();
+    client_iterator it_e = _waitlist.end();
+
+    while (it_b != it_e)
+    {
+        if (*it_b == client)
+			return (1);
+        it_b++;
+    }
+	return (0);
+}
+
+void						Channel::client_out_waitlist(Client* client)
+{
+	client_iterator it_b = _waitlist.begin();
+    client_iterator it_e = _waitlist.end();
+
+    while (it_b != it_e)
+    {
+        if (*it_b == client)
+            _clients.erase(it_b);
+
+        it_b++;
+    }
+}
+
 void                        Channel::ban_client(Client* client)
 {
 	if (client != NULL)
@@ -174,4 +208,26 @@ void                        Channel::kick(Client* client, Client* target, const 
 
     std::string message = client->get_nickname() + " kicked " + target->get_nickname() + " from channel " + _name;
     log(message);
+}
+
+void                        Channel::invite(Client* client, Client* target)
+{
+	  _invited.push_back(target);
+	  target->reply(RPL_INVITE(target->get_nickname(), client->get_channel()->get_name(), client->get_nickname()));
+	  client->reply(NOTICE(client->get_nickname(), client->get_channel()->get_name(), target->get_nickname()));
+
+}
+
+bool                        Channel::is_invited(Client* client)
+{
+    client_iterator it_b = _invited.begin();
+    client_iterator it_e = _invited.end();
+
+    while (it_b != it_e)
+    {
+        if (*it_b == client)
+            return (1);
+        it_b++;
+    }
+    return (0);
 }

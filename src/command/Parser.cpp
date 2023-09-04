@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:37:26 by valarcon          #+#    #+#             */
-/*   Updated: 2023/08/30 19:13:13 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:01:30 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ Parser::Parser(Server* srv) : _srv(srv)
 
 	_commands["PRIVMSG"] = new PrivMsg(_srv);
 	_commands["NOTICE"] = new Notice(_srv);
+	_commands["INVITE"] = new Invite(_srv);
 }
 
 Parser::~Parser ()

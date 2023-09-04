@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:31:44 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/04 16:04:06 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:58:03 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,16 @@ class Channel
         Client*                 _admin;
         std::vector<Client *>   _clients;
 		std::vector<Client *>   _banned;
+		std::vector<Client *>   _waitlist;
+		std::vector<Client *>   _invited;
+
 
 
 		std::string             _k;
         std::string             _t; 
         size_t                  _l;
         bool                    _n;
+		bool                    _i;
 
         Channel();
         Channel(const Channel& src);
@@ -52,7 +56,10 @@ class Channel
 		std::string                 get_topic() const;
         size_t                      get_limit() const;
         bool                        ext_msg() const;
+		bool						get_invite() const;
 		bool						is_ban_client(Client* client);
+		void						invite(Client* client, Client* target);
+		bool						is_invited(Client* client);
 
         size_t                      get_size() const;
         std::vector<std::string>    get_nicknames();
@@ -61,6 +68,7 @@ class Channel
 		void                        set_topic(std::string topic);
         void                        set_limit(size_t limit);
         void                        set_ext_msg(bool flag);
+		void                        set_invite(bool flag);
 
         void                        broadcast(const std::string& message);
         void                        broadcast(const std::string& message, Client* exclude);
@@ -70,10 +78,12 @@ class Channel
 
 		//
 		void                        ban_client(Client* client);
-        //void                        remove_banned(Client* client);
         void                        remove_bans(Client* client);
 
         void                        kick(Client* client, Client* target, const std::string& reason);
+		void						client_to_waitlist(Client* client);
+		bool						client_at_waitlist(Client* client);
+		void						client_out_waitlist(Client* client);
 };
 
 #endif

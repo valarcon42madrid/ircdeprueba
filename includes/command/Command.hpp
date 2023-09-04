@@ -165,4 +165,14 @@ class List : public Command
         void    execute(Client* client, std::vector<std::string> args);
 };
 
+class Invite : public Command
+{
+    public:
+
+        Invite(Server* srv);
+        ~Invite();
+
+        void    execute(Client* client, std::vector<std::string> args);
+};
+
 #endif

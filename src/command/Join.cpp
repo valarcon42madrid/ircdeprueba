@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:35:41 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/04 16:08:58 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:24:16 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,36 @@ void    Join::execute(Client* client, std::vector<std::string> args)
 		client->reply(ERR_CHANNELISFULL(client->get_nickname(), name));
 		return;
 	}
+	if (channel->is_ban_client(client))
+    {
+        client->reply(ERR_BANNEDFROMCHAN(client->get_nickname(), channel->get_name()));
+        return ;
+    }
+	if (channel->is_invited(client))
+	{
+		client->join(channel);
+		return ;
+	}
+	if (channel->get_invite() && pass == "+i")
+    {
+		if (channel->client_at_waitlist(client))
+			client->reply(ERR_ALREADYONCHANNEL(client->get_nickname(), channel->get_name()));
+		else
+		{
+			channel->client_to_waitlist(client);
+			client->reply(RPL_INVITELIST(client->get_nickname(), channel->get_name()));
 
+		}
+		return ;
+    }
     if (channel->get_key() != pass) 
     {
 		client->reply(ERR_BADCHANNELKEY(client->get_nickname(), name));
 		return;
 	}
-	if (channel->is_ban_client(client))
+	if (channel->get_invite())
 	{
-		client->reply(ERR_BANNEDFROMCHAN(client->get_nickname(), channel->get_name()));
+		client->reply(ERR_INVITEONLYCHAN(client->get_nickname(), channel->get_name()));	
 		return ;
 	}
 	client->join(channel);

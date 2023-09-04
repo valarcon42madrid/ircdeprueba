@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:34:04 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/04 17:28:53 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:09:24 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@
 #define ERR_FORBIDDEN()              					"403  :Cannot ban an operator"
 #define ERR_BADCHANNELKEY(source, channel)              "475 " + source + " " + channel + " :Cannot join channel (+k)"
 #define ERR_CHANNELISFULL(source, channel)              "471 " + source + " " + channel + " :Cannot join channel (+l)"
+#define ERR_ALREADYINVITED(source, target, channel)     "472 " + source + " :User " + target + " is already invited to channel " + channel
+#define ERR_INVITEONLYCHAN(source, channel)             "473 " + source + " :Channel " + channel + " is invite only"
+#define ERR_ALREADYONCHANNEL(source, channel)           "475 " + source + " :You are already on channel " + channel
+
 #define ERR_CANNOTSENDTOCHAN(source, channel)           "404 " + source + " " + channel + " :Cannot send to channel"
 #define ERR_CHANOPRIVSNEEDED(source, channel)           "482 " + source + " " + channel + " :You're not channel operator"
 #define ERR_NOPRIVILEGES(source, channel)           	"481 " + source + " " + channel + " :Permission Denied: Insufficient privileges"
@@ -45,7 +49,10 @@
 #define ERR_USERNOTINCHANNEL(source, nickname, channel) "441 " + source + " " + nickname + " " + channel + " :They aren't on that channel"
 
 #define RPL_LIST(source, channel)						"319 " + source + " : " +  channel
+#define RPL_INVITELIST(source, channel)                 "332 " + source + " : You are now on the waiting list for " +  channel
+#define RPL_INVITE(source, channel, target)             "341 " + source + " " + channel + " : You are invited to channel " +  channel + " by " + target
 #define RPL_WELCOME(source)                             "001 " + source + " :Welcome " + source + " to the ft_irc network"
+#define NOTICE(source, channel, target)                 "001 " + source + " :Invitation to " + channel + " sent to " + target
 #define RPL_NAMREPLY(source, channel, users)            "353 " + source + " = " + channel + " :" + users
 #define RPL_ENDOFNAMES(source, channel)                 "366 " + source + " " + channel + " :End of /NAMES list."
 
