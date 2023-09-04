@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:36:41 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/04 16:52:35 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:29:05 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void    Mode::execute(Client* client, std::vector<std::string> args)
 				}
 				else
 				{
-					channel->broadcast(ERR_NOPRIVILEGES(channel->get_name(), args[p]));
+					channel->broadcast(ERR_FORBIDDEN());
 				}
                 p += active ? 1 : 0;
 
