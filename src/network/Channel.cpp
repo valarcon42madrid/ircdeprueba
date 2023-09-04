@@ -79,7 +79,7 @@ void                        Channel::broadcast(const std::string& message, Clien
 
     while (it_b != it_e)
     {
-        if (*it_b == exclude)
+        if (*it_b == *exclude)
         {
             it_b++;
             continue;
@@ -102,7 +102,7 @@ void                        Channel::remove_client(Client* client)
 
     while (it_b != it_e)
     {
-        if (*it_b == client)
+        if (*it_b == *client)
             _clients.erase(it_b);
         
         it_b++;
@@ -126,7 +126,7 @@ bool                        Channel::is_ban_client(Client* client)
 
     while (it_b != it_e)
     {
-        if (*it_b == client)
+        if (*it_b == *client)
 			return 1;
 
         it_b++;
@@ -146,7 +146,7 @@ bool						Channel::client_at_waitlist(Client* client)
 
     while (it_b != it_e)
     {
-        if (*it_b == client)
+        if (*it_b == *client)
 			return (1);
         it_b++;
     }
@@ -160,7 +160,7 @@ void						Channel::client_out_waitlist(Client* client)
 
     while (it_b != it_e)
     {
-        if (*it_b == client)
+        if (*it_b == *client)
             _clients.erase(it_b);
 
         it_b++;
@@ -182,7 +182,7 @@ void                        Channel::remove_bans(Client* client)
 		client_iterator it_e = _banned.end();
    		 while (it_b != it_e)
    		 {
-			  if (*it_b == client)
+			  if (*it_b == *client)
             	 _banned.erase(it_b);
         	it_b++;
    		 }
@@ -225,7 +225,7 @@ bool                        Channel::is_invited(Client* client)
 
     while (it_b != it_e)
     {
-        if (*it_b == client)
+        if (*it_b == *client)
             return (1);
         it_b++;
     }
