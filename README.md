@@ -116,12 +116,15 @@ POR ULTIMO CABE DESTACAR:
 (((  K -> std::string    get_key()      //////
      L  -> size_t   get_limit() const   /////
     N  ->  bool    ext_msg() const                 )))
-    ADEMAS DE "b"ban , "t"topic, "i"invite(AUN EN DESARROLLO)
-
+    ADEMAS DE "b"ban , "t"topic, "i"invite
+    
 MODE channel flags (user/args)
 
 MODE 6667 +b usuario
 
+
+-> INVITE Channel Nickname
+(Relevante para salas con +i)
 
 -> PART
 
