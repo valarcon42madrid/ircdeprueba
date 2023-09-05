@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:36:41 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/04 17:38:25 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:24:18 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,20 @@ void    Mode::execute(Client* client, std::vector<std::string> args)
             }
 			case 'b':
             {
-				if (channel->get_admin() != _srv->get_client(args[p]) || active == 0)
+			//esto es correcto	channel->ban_client(active ? _srv->get_client(args[p]) : NULL);
+
+				if (channel->is_ban_client(_srv->get_client(args[p])) && active == 1)
+                   channel->broadcast(ERR_BANEDFROMCHAN(channel->get_name(), (args[p])));
+				else if (channel->get_admin() != _srv->get_client(args[p]))
 				{
-                	channel->ban_client(active ? _srv->get_client(args[p]) : NULL);
-					if (active == 0 && args[p] != "" && _srv->get_client(args[p]) == NULL)
+					if (args[p] != "" && _srv->get_client(args[p]) == NULL)
 						channel->broadcast(ERR_NOSUCHNICK(channel->get_name(), args[p]));
 					else
 					{
-						channel->remove_bans(active ? NULL : _srv->get_client(args[p]));
+						if (active == 1)
+                        	channel->ban_client(active ? _srv->get_client(args[p]) : NULL);
+						else if (active == 0)
+							channel->remove_bans(active ? NULL : _srv->get_client(args[p]));
 						channel->broadcast(RPL_MODE(client->get_prefix(), channel->get_name(), (active ? "+b" : "-b"), (active ? args[p] : "")));
 					}
 				}
