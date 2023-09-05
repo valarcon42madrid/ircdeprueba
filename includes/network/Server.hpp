@@ -58,8 +58,7 @@ class Server
         std::vector<pollfd>     _pfds;
         std::vector<Channel *>  _channels;
         std::map<int, Client *> _clients;
- 	std::map<int, Client *> _waitlist;
-        std::map<int, Client *> _banned;
+ 	
 
 
         Parser*                 _parser;
