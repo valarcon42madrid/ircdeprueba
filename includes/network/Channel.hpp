@@ -29,9 +29,6 @@ class Channel
         std::string             _name;
         Client*                 _admin;
         std::vector<Client *>   _clients;
-		std::vector<Client *>   _banned;
-		std::vector<Client *>   _waitlist;
-		std::vector<Client *>   _invited;
 
 
 
@@ -49,6 +46,9 @@ class Channel
         Channel(const std::string &name, const std::string &key, const std::string &topic, Client* admin);
         ~Channel();
 
+		std::vector<Client *>   _banned;
+		std::vector<Client *>   _waitlist;
+		std::vector<Client *>   _invited;
         std::string                 get_name() const;
         Client*                     get_admin() const;
         
