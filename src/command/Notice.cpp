@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:37:15 by valarcon          #+#    #+#             */
-/*   Updated: 2023/07/27 10:37:17 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/05 19:27:33 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ void    Notice::execute(Client* client, std::vector<std::string> args)
     if (message.at(0) == ':')
         message = message.substr(1);
 
-    if (target.at(0) == '#')
+	if (_srv->get_channel(target) != NULL)
     {
-        Channel* channel = client->get_channel();
-        if (!channel)
+		Channel* channel = _srv->get_channel(target);
+        if (!channel && _srv->get_client(target) == NULL)
         {
             client->reply(ERR_NOSUCHCHANNEL(client->get_nickname(), target));
 			return;
         }
-        if (!channel->ext_msg())
+        if (channel->ext_msg())
         {
             std::vector<std::string> nicknames = channel->get_nicknames();
 
