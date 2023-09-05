@@ -52,7 +52,7 @@ void    Invite::execute(Client* client, std::vector<std::string> args)
     }
 	if (channel->is_ban_client(clientinvited))
 	{
-		client->reply(ERR_NOSUCHNICK(target, name));
+		client->reply(ERR_BANEDFROMCHAN(channel->get_name(), target));
 
 		return ;
 	}
