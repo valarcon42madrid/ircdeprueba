@@ -108,19 +108,29 @@ Mensaje privado a un usuario
 
 Mensaje a un objetivo (canal o usuario)
 
+ . LIST
+Muestra los canales y sus topics, se usa:
+
+"LIST"     (PARA TODOS LOS CANALES)
+"LIST channel channel channel" (PARA CANALES CONCRETOS)
+
 _______________________________________________
 POR ULTIMO CABE DESTACAR:
 
--> EL COMANDO MODE, EMPLEADO PARA FIJAR O ELIMINAR OPCIONES DE UN OBJETIVO (canal o usuario). Son +/- “k”, “l”, “n” para canales.
+-> EL COMANDO MODE, EMPLEADO PARA FIJAR O ELIMINAR OPCIONES DE UN OBJETIVO 
 
-(((  K -> std::string    get_key()      //////
-     L  -> size_t   get_limit() const   /////
-    N  ->  bool    ext_msg() const                 )))
-    ADEMAS DE "b"ban , "t"topic, "i"invite
+MODE canal +/-Flag "TARGETifNEEDED"
+
+ K pone key en un canal ("MODE micanal +k contraseña" hace que para acceder debas hacer "JOIN micanal contraseña") 
+     L  establece el limite de clientes   
+    N  deshabilita los mensajes externos (es decir +n evita los NOTICE al canal)               
+    "+b" banea a un client 
+    , "+t TOPCO" crea un topic en el canal
+    , "+i" hace que solo se pueda acceder mediante la recepción de un invite
     
 MODE channel flags (user/args)
 
-MODE 6667 +b usuario
+EJ: MODE 6667 +b usuario
 
 
 -> INVITE Channel Nickname
@@ -130,14 +140,14 @@ MODE 6667 +b usuario
 
 Abandona el/los canales especificados
 
-syntax: PART channels message
+syntax: PART channels "message-optional"
 
 
 -> KICK
 
 echar a alguien
 
-syntax: KICK channel client :message
+syntax: KICK channel client "message-optional"
 
 KICK 6667 v : expulsado
 
