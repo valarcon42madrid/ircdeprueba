@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:42:20 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/01 17:19:31 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/06 11:34:13 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,20 @@ Server::~Server()
 {
     delete _parser;
 
-    for (size_t i = 0; i < _channels.size(); i++)
-        delete _clients[i];
+	_clients.clear();
+
+	for (client_iterator it = _clients.begin(); it != _clients.end(); it++)
+	{
+		delete it->second;
+	}
+
+	_channels.clear();
+	for (channel_iterator it_channel = _channels.begin(); it_channel != _channels.end(); it_channel++)
+	{
+		(*it_channel)->finish();
+		delete *it_channel;
+	}
+	_pfds.clear();
 }
 
 

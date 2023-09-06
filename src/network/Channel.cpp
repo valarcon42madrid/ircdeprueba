@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:40:23 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/04 19:09:21 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/06 11:33:47 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,4 +230,14 @@ bool                        Channel::is_invited(Client* client)
         it_b++;
     }
     return (0);
+}
+
+void					Channel::finish()
+{
+	if (_admin)
+		delete _admin;
+	_clients.clear();
+	_banned.clear();
+	_waitlist.clear();
+	_invited.clear();
 }

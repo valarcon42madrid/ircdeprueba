@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:31:44 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/04 18:58:03 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/06 11:31:39 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ class Channel
 		void						client_to_waitlist(Client* client);
 		bool						client_at_waitlist(Client* client);
 		void						client_out_waitlist(Client* client);
+		void						finish();
 };
 
 #endif
