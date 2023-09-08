@@ -174,7 +174,7 @@ void            Server::on_client_disconnect(int fd)
         {
             if (it_b->fd == fd)
             {
-                _pfds.erase(it_b);
+                //_pfds.erase(it_b);
                 close(fd);
                 break;
             }
