@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:39:04 by valarcon          #+#    #+#             */
-/*   Updated: 2023/07/27 10:39:07 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/11 17:55:44 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void    PrivMsg::execute(Client* client, std::vector<std::string> args)
     if (message.at(0) == ':')
         message = message.substr(1);
 
-    if (target.at(0) == '#'|| _srv->get_channel(target))
+    if (target.at(0) == '#' || _srv->get_channel(target))
     {
         Channel* channel = client->get_channel();
 
@@ -67,14 +67,14 @@ void    PrivMsg::execute(Client* client, std::vector<std::string> args)
                 it++;
             }
 
-            if (it == end && && _srv->get_channel(target)->ext_msg())
+            if (it == end && _srv->get_channel(target)->ext_msg())
             {
                 client->reply(ERR_CANNOTSENDTOCHAN(client->get_nickname(), target));
                 return;
             }
         }
 
-        channel->broadcast(RPL_PRIVMSG(client->get_prefix(), target, message), client);
+        channel->broadcast(RPL_PRIVMSG(target, client->get_prefix(), message), client);
         return;
     }
 

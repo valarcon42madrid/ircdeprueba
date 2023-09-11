@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:37:15 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/05 19:27:33 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:04:09 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void    Notice::execute(Client* client, std::vector<std::string> args)
             }
         }
 
-        channel->broadcast(RPL_NOTICE(client->get_prefix(), target, message), client);
+        channel->broadcast(RPL_NOTICE(target, client->get_prefix(), message), client);
         return;
     }
 
