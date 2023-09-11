@@ -42,7 +42,7 @@ void    PrivMsg::execute(Client* client, std::vector<std::string> args)
     if (message.at(0) == ':')
         message = message.substr(1);
 
-    if (target.at(0) == '#')
+    if (target.at(0) == '#'|| _srv->get_channel(target))
     {
         Channel* channel = client->get_channel();
 
@@ -67,7 +67,7 @@ void    PrivMsg::execute(Client* client, std::vector<std::string> args)
                 it++;
             }
 
-            if (it == end)
+            if (it == end && && _srv->get_channel(target)->ext_msg())
             {
                 client->reply(ERR_CANNOTSENDTOCHAN(client->get_nickname(), target));
                 return;
