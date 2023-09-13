@@ -126,6 +126,14 @@ Channel*        Server::get_channels(int i)
 	return NULL;
 }
 
+std::string gethostname(const sockaddr_in& addr) {
+    struct hostent* host = gethostbyaddr((char*)&addr.sin_addr, sizeof(addr.sin_addr), AF_INET);
+    if (host == NULL) {
+        return "";
+    }
+    return host->h_name;
+}
+
 void            Server::on_client_connect()
 {
 
@@ -140,9 +148,8 @@ void            Server::on_client_connect()
     pollfd  pfd = {fd, POLLIN, 0};
     _pfds.push_back(pfd);
 
-    char hostname[NI_MAXHOST];
-    int res = getnameinfo((struct sockaddr *) &addr, sizeof(addr), hostname, NI_MAXHOST, NULL, 0, NI_NUMERICSERV);
-    if (res != 0)
+     std::string hostname = gethostname(addr);
+    if (hostname == "")
         throw std::runtime_error("Error while getting a hostname on a new client!");
 
     Client* client = new Client(fd, ntohs(addr.sin_port), hostname);
