@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:42:20 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/06 11:34:13 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/13 11:46:44 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ Server::~Server()
 	_pfds.clear();
 }
 
+void signalHandler(int signum) 
+{
+    std::cout << "Interrupt signal (" << signum << ") received.\n";
+    exit(0);
+}
+
 
 void            Server::start()
 {
@@ -51,13 +57,13 @@ void            Server::start()
 
     log("Server is listening...");
 
-
+    
     while (_running)
     {
         if (poll(_pfds.begin().base(), _pfds.size(), -1) < 0)
             throw std::runtime_error("Error while polling from fd!");
 
-
+        signal(SIGINT, signalHandler);
         for (pfd_iterator it = _pfds.begin(); it != _pfds.end(); it++)
         {
             if (it->revents == 0)
@@ -148,9 +154,7 @@ void            Server::on_client_connect()
     Client* client = new Client(fd, ntohs(addr.sin_port), hostname);
     _clients.insert(std::make_pair(fd, client));
 
-    char message[1000];
-    sprintf(message, "%s:%d has connected.", client->get_hostname().c_str(), client->get_port());
-    log(message);
+    log(client->get_hostname().c_str() + (std::string)":" + std::to_string(client->get_port()) + (std::string)" has connected.");
 }
 
 void            Server::on_client_disconnect(int fd)
@@ -161,9 +165,7 @@ void            Server::on_client_disconnect(int fd)
 
         client->leave();
 
-        char message[1000];
-		sprintf(message, "%s:%d has disconnected!", client->get_hostname().c_str(), client->get_port());
-		log(message);
+        log(client->get_hostname().c_str() + (std::string)":" + std::to_string(client->get_port()) + (std::string)" has disconnected.");
 
         _clients.erase(fd);
 
@@ -174,7 +176,6 @@ void            Server::on_client_disconnect(int fd)
         {
             if (it_b->fd == fd)
             {
-                //_pfds.erase(it_b);
                 close(fd);
                 break;
             }

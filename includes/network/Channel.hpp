@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:31:44 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/06 11:31:39 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/13 11:47:13 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ class Channel
         void                        add_client(Client* client);
         void                        remove_client(Client* client);
 
-		//
 		void                        ban_client(Client* client);
         void                        remove_bans(Client* client);
 

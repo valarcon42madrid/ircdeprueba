@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:41:07 by valarcon          #+#    #+#             */
-/*   Updated: 2023/07/27 10:49:25 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/13 11:46:37 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,7 @@ void            Client::welcome()
     _state = REGISTERED;
     this->reply(RPL_WELCOME(_nickname));
 
-    char message[100];
-    sprintf(message, "%s:%d is now known as %s.", _hostname.c_str(), _port, _nickname.c_str());
-    log(message);
+    log(_hostname.c_str() + (std::string)":" + std::to_string(_port) + (std::string)"is now known as " + _nickname.c_str() + ".");
 }
 
 
