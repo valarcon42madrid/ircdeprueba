@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:40:23 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/06 11:33:47 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/14 09:59:23 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ void						Channel::client_out_waitlist(Client* client)
 void                        Channel::ban_client(Client* client)
 {
 	if (client != NULL)
-	    _banned.push_back(client);
+        _banned.push_back(client);
 }
 
 void                        Channel::remove_bans(Client* client)
@@ -185,7 +185,7 @@ void                        Channel::remove_bans(Client* client)
 			  if (*it_b == client)
             	 _banned.erase(it_b);
         	it_b++;
-   		 }
+        }
 	}
 	else
 	{

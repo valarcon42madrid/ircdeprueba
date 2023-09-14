@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Mode.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:36:41 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/06 11:37:10 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/14 09:33:54 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void    Mode::execute(Client* client, std::vector<std::string> args)
                 p += active ? 1 : 0;
                 break;
             }
-			 case 't':
+			case 't':
             {
                 channel->set_topic(active ? args[p] : "");
                 channel->broadcast(RPL_MODE(client->get_prefix(), channel->get_name(), (active ? "+t" : "-t"), (active ? args[p] : "")));
@@ -82,7 +82,7 @@ void    Mode::execute(Client* client, std::vector<std::string> args)
 			case 'b':
             {
 				if (channel->is_ban_client(_srv->get_client(args[p])) && active == 1)
-                   channel->broadcast(ERR_BANEDFROMCHAN(channel->get_name(), (args[p])));
+                    channel->broadcast(ERR_BANEDFROMCHAN(channel->get_name(), (args[p])));
 				else if (channel->get_admin() != _srv->get_client(args[p]))
 				{
 					if (args[p] != "" && _srv->get_client(args[p]) == NULL)
@@ -90,7 +90,7 @@ void    Mode::execute(Client* client, std::vector<std::string> args)
 					else
 					{
 						if (active == 1)
-                        	channel->ban_client(active ? _srv->get_client(args[p]) : NULL);
+                            channel->ban_client(active ? _srv->get_client(args[p]) : NULL);
 						else if (active == 0)
 							channel->remove_bans(active ? NULL : _srv->get_client(args[p]));
 						channel->broadcast(RPL_MODE(client->get_prefix(), channel->get_name(), (active ? "+b" : "-b"), (active ? args[p] : "")));

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   List.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/14 10:00:52 by sasalama          #+#    #+#             */
+/*   Updated: 2023/09/14 10:00:54 by sasalama         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "command/Command.hpp"
 
 List::List(Server* srv) : Command(srv) {}
@@ -8,7 +20,7 @@ List::~List() {}
 
 void    List::execute(Client* client, std::vector<std::string> args)
 {
-	 int i = 0;
+	int i = 0;
     if (args.empty())
     {
 		Channel* ch = _srv->get_channels(i);
@@ -20,7 +32,7 @@ void    List::execute(Client* client, std::vector<std::string> args)
 			i++;
 			Channel* ch = _srv->get_channels(i);
 			if (!ch)
-            	return;
+				return;
 		}
     }
 	else

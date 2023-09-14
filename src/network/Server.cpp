@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:42:20 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/13 11:46:44 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/09/14 09:59:48 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ Server::~Server()
 	{
 		delete it->second;
 	}
-
 	_channels.clear();
 	for (channel_iterator it_channel = _channels.begin(); it_channel != _channels.end(); it_channel++)
 	{
@@ -44,7 +43,7 @@ Server::~Server()
 
 void signalHandler(int signum) 
 {
-    std::cout << "Interrupt signal (" << signum << ") received.\n";
+    (void)signum;
     exit(0);
 }
 
@@ -57,7 +56,6 @@ void            Server::start()
 
     log("Server is listening...");
 
-    
     while (_running)
     {
         if (poll(_pfds.begin().base(), _pfds.size(), -1) < 0)
@@ -68,13 +66,11 @@ void            Server::start()
         {
             if (it->revents == 0)
                 continue;
-
             if ((it->revents & POLLHUP) == POLLHUP)
             {
                 this->on_client_disconnect(it->fd);
                 break;
             }
-
             if ((it->revents & POLLIN) == POLLIN)
             {
                 if (it->fd == _sock)
@@ -154,7 +150,7 @@ void            Server::on_client_connect()
     pollfd  pfd = {fd, POLLIN, 0};
     _pfds.push_back(pfd);
 
-     std::string hostname = gethostname(addr);
+    std::string hostname = gethostname(addr);
     if (hostname == "")
         throw std::runtime_error("Error while getting a hostname on a new client!");
 
@@ -216,23 +212,19 @@ void            Server::on_client_message(int fd)
 std::string     Server::read_message(int fd)
 {
     std::string message;
-    
-    char buffer[100];
-    bzero(buffer, 100);
 
-    while (!strstr(buffer, "\n"))
+    while (true)
     {
-        bzero(buffer, 100);
+        char c;
 
-        if ((recv(fd, buffer, 100, 0) < 0) and (errno != EWOULDBLOCK))
+        if ((recv(fd, &c, 1, 0) < 0) and (errno != EWOULDBLOCK))
             throw std::runtime_error("Error while reading buffer from a client!");
-
-        message.append(buffer);
+        if (c == '\n')
+            break;
+        message.push_back(c);
     }
-
     return message;
 }
-
 
 Channel*        Server::create_channel(const std::string& name, const std::string& key, const std::string& topic, Client* client)
 {
@@ -241,7 +233,6 @@ Channel*        Server::create_channel(const std::string& name, const std::strin
 
     return channel;
 }
-
 
 int             Server::create_socket()
 {
@@ -258,8 +249,7 @@ int             Server::create_socket()
 
     struct sockaddr_in  serv_addr = {};
 
-    bzero((char*) &serv_addr, sizeof(serv_addr));
-    
+    std::memset((char*) &serv_addr, '\0', sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = INADDR_ANY;
     serv_addr.sin_port = htons(atoi(_port.c_str()));
