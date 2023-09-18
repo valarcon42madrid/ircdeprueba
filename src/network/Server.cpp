@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:42:20 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/18 13:22:10 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/18 13:58:43 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,9 +211,7 @@ void            Server::on_client_message(int fd)
 
 std::string     Server::read_message(int fd, Client *client)
 {
-	if (client->_buffer.back() == '\n')
-		client->_buffer.clear();
-
+	client->buffer_clear();
     while (true)
     {
         char c;
@@ -222,11 +220,12 @@ std::string     Server::read_message(int fd, Client *client)
             throw std::runtime_error("Error while reading buffer from a client!");
         if (c == '\n')
             break;
-        client->_buffer.push_back(c);
+        client->add_buffer(c);
 		 if (c != '\n')
             return "";
     }
-    return client->_buffer;
+	client->buff_ready();
+    return client->get_buffer();
 }
 
 Channel*        Server::create_channel(const std::string& name, const std::string& key, const std::string& topic, Client* client)

@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:32:59 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/18 13:16:59 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/18 13:58:41 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ class Client
         std::string     _username;
         std::string     _realname;
         std::string     _hostname;
+		std::string     _buffer;
+		bool			_fb;
 
         ClientState     _state;
         Channel*        _channel;
@@ -58,7 +60,6 @@ class Client
         Client(int fd, int port, const std::string &hostname);
         ~Client();
 
-		std::string     _buffer;
         int             get_fd() const;
         int             get_port() const;
 
@@ -67,6 +68,13 @@ class Client
         std::string     get_realname() const;
         std::string     get_hostname() const;
         std::string     get_prefix() const;
+		std::string     get_buffer();
+
+        void            buffer_clear();
+
+		void			buff_ready();
+
+		void            add_buffer(char c);
 
         Channel*        get_channel() const;
 

@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:41:07 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/18 13:07:15 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/18 13:58:28 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,29 @@ void            Client::welcome()
     log(_hostname.c_str() + (std::string)":" + std::to_string(_port) + (std::string)"is now known as " + _nickname.c_str() + ".");
 }
 
+std::string     Client::get_buffer()
+{
+    return _buffer;
+}
 
+void			Client::add_buffer(char c)
+{
+	_buffer.push_back(c);
+}
+
+void            Client::buffer_clear()
+{
+	if (_fb == 1)
+	{
+    	_buffer.clear();
+		_fb = 0;
+	}
+}
+
+void			Client::buff_ready()
+{
+	_fb = 1;
+}
 
 void            Client::join(Channel* channel)
 {
