@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:33:29 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/01 17:17:50 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/18 13:15:30 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ class Server
         void            on_client_disconnect(int fd);
         void            on_client_message(int fd);
 
-        std::string     read_message(int fd);
+        std::string     read_message(int fd, Client *client);
 
         Channel*        create_channel(const std::string &name, const std::string &key, const std::string &topic, Client *client);
 

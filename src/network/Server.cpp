@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:42:20 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/14 09:59:48 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/09/18 13:22:10 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,9 +199,9 @@ void            Server::on_client_message(int fd)
     try
     {
         Client*     client = _clients.at(fd);
-        std::string message = this->read_message(fd);
-        
-        _parser->invoke(client, message);
+        std::string message = this->read_message(fd, client);
+       if (message != "") 
+        	_parser->invoke(client, message);
     }
     catch (const std::exception& e) 
     {
@@ -209,21 +209,24 @@ void            Server::on_client_message(int fd)
     }
 }
 
-std::string     Server::read_message(int fd)
+std::string     Server::read_message(int fd, Client *client)
 {
-    std::string message;
+	if (client->_buffer.back() == '\n')
+		client->_buffer.clear();
 
     while (true)
     {
         char c;
 
-        if ((recv(fd, &c, 1, 0) < 0) and (errno != EWOULDBLOCK))
-            throw std::runtime_error("Error while reading buffer from a client!");
+        if ((recv(fd, &c, 1, 0) < 0) /*and (errno != EWOULDBLOCK)*/)
+           /* throw std::runtime_error("Error while reading buffer from a client!");*/
         if (c == '\n')
             break;
-        message.push_back(c);
+        client->_buffer.push_back(c);
+		 if (c != '\n')
+            return "";
     }
-    return message;
+    return client->_buffer;
 }
 
 Channel*        Server::create_channel(const std::string& name, const std::string& key, const std::string& topic, Client* client)

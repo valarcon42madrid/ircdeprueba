@@ -6,7 +6,7 @@
 /*   By: valarcon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:32:59 by valarcon          #+#    #+#             */
-/*   Updated: 2023/07/27 10:33:20 by valarcon         ###   ########.fr       */
+/*   Updated: 2023/09/18 13:16:59 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ class Client
         Client(int fd, int port, const std::string &hostname);
         ~Client();
 
+		std::string     _buffer;
         int             get_fd() const;
         int             get_port() const;
 
