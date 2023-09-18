@@ -218,8 +218,8 @@ std::string     Server::read_message(int fd, Client *client)
     {
         char c;
 
-        if ((recv(fd, &c, 1, 0) < 0) /*and (errno != EWOULDBLOCK)*/)
-           /* throw std::runtime_error("Error while reading buffer from a client!");*/
+        if ((recv(fd, &c, 1, 0) < 0))
+            throw std::runtime_error("Error while reading buffer from a client!");
         if (c == '\n')
             break;
         client->_buffer.push_back(c);
