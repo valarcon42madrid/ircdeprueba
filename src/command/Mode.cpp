@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 10:36:41 by valarcon          #+#    #+#             */
-/*   Updated: 2023/09/14 09:33:54 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/09/22 12:13:11 by valarcon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ void    Mode::execute(Client* client, std::vector<std::string> args)
     }
 
 	int i = 0, p = 2;
+	int a = 1;
 	char c;
-    
+	std::string argaux;
     while ((c = args[1][i]))
     {
         char prev_c = i > 0 ? args[1][i - 1] : '\0';
@@ -74,8 +75,14 @@ void    Mode::execute(Client* client, std::vector<std::string> args)
             }
 			case 't':
             {
-                channel->set_topic(active ? args[p] : "");
-                channel->broadcast(RPL_MODE(client->get_prefix(), channel->get_name(), (active ? "+t" : "-t"), (active ? args[p] : "")));
+				argaux = args[p];
+				while (args[p + a].size() != 0)
+				{
+				   argaux = argaux + " " + args[p + a];
+				   a++;
+				}
+                channel->set_topic(active ? argaux : "");
+                channel->broadcast(RPL_MODE(client->get_prefix(), channel->get_name(), (active ? "+t" : "-t"), (active ? argaux : "")));
                 p += active ? 1 : 0;
                 break;
             }
