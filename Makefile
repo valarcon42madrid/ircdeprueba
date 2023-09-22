@@ -1,8 +1,6 @@
 NAME = ircserv
 
-SRCS = $(wildcard src/*.cpp src/network/*.cpp src/command/*.cpp)
-
-# wildcard is a pattern to use all names of any of the following matches #
+SRCS = src/main.cpp src/command/Command.cpp src/command/Invite.cpp src/command/Join.cpp src/command/Kick.cpp src/command/List.cpp src/command/Mode.cpp src/command/Nick.cpp src/command/Notice.cpp src/command/Parser.cpp src/command/Part.cpp src/command/Pass.cpp src/command/Ping.cpp src/command/Pong.cpp src/command/PrivMsg.cpp src/command/Quit.cpp src/command/User.cpp src/network/Channel.cpp src/network/Client.cpp src/network/Server.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
